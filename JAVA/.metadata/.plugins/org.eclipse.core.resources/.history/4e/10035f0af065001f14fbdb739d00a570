@@ -1,0 +1,35 @@
+package com.inheritannce;
+
+class A extends methodOverriding
+{
+	@Override
+	public void text()
+	{
+		System.out.println("hello");
+	}
+	
+}
+
+/*note: constructor, static, private methods  cannot be overridden because we cannot achieve 
+inheritance with them*/
+public class methodOverriding  
+{
+	
+	public void text()
+	{
+		System.out.println("hi");
+	}
+	public static void main(String[] args) {
+		A a = new A();
+		a.text();
+		methodOverriding m = new methodOverriding();
+		m.text();
+	}
+	
+	
+	
+	
+	
+}
+
+

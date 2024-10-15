@@ -1,0 +1,29 @@
+package program;
+
+public class pal 
+{
+	int a=121;
+	int temp=a; 
+	int ress=0;
+	
+
+	while(temp>10) {
+		int rem=temp%10;
+		rem=(temp*10)+ress;
+		ress=temp/10;
+
+	}
+	
+	if(temp>0) 
+	{
+		System.out.println("this is palindome"+ress);
+	}else 
+	{
+		System.out.println("this is not palindome"+ress);
+	}
+	public static void main(String[] args) 
+	{
+		
+	}
+}
+}
