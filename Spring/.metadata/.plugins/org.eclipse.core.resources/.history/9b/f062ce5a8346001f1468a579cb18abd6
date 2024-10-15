@@ -1,0 +1,85 @@
+package edu.jsp.btm.eca;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+@CrossOrigin(allowedHeaders = "*" )
+@RestController
+public class NotepadController 
+{
+	@Autowired
+	private NotepadRepository repository;
+	
+	@PostMapping("/notepad/save")
+	
+	public ResponseStructure<Notepad> save( @RequestBody   Notepad note )
+	{
+			note=repository.save(note);
+			
+		ResponseStructure<Notepad> response= new ResponseStructure<Notepad>();
+		response.setStatuscode(201);
+		response.setMessage("created");
+		response.setData(note);
+		
+		return response;
+		
+	}
+	@GetMapping("/notepad/find")
+	public List<Notepad> find()
+	{
+		
+		return repository.findAll();
+		
+	}
+	
+	@DeleteMapping("/notepad/delete")
+	public String delete( @RequestParam int num)
+	{
+		if(repository.existsById(num))
+		{
+		    repository.deleteById(num); 
+		    return "Notepad is deleted";
+		}
+		return "Notepad Id is Not Exist";
+		
+	}
+	
+	@GetMapping("/notepad/findbyid")
+	public Notepad findByID(@RequestParam int notepadID)
+	{
+		
+		Optional<Notepad>op= repository.findById(notepadID);
+		if(op.isPresent())
+		{
+			return op.get();
+		}
+		return null;
+		
+	}
+	
+	
+	@PutMapping("/notepad/upadte")
+	public String update(@RequestBody Notepad note, @RequestParam int notepadid)
+	{
+		if(note!=null && notepadid!=0 && repository.existsById(notepadid))
+		{
+			note.setNotepadId(notepadid);
+			repository.save(note);
+			return "Notepad is Updated";
+			
+		}
+		return "notepad is not updated";
+	}
+	
+
+
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+            
+            
+          
+            
+            <bean id=" session" class=" org.jsp.MydataResource.MysessionFactory" autowire="byType">
+            
+            <property name="mappingresource">
+            <list>
+            <value>xml</value>
+            
+            </list>
+            </property>
+            <property name="hibernateproperties">
+            <props>
+            <prop key="name">kishore</prop>
+            <prop key="id">53</prop>
+            </props>
+            </property>
+            </bean>
+            
+            
+              <bean id=" datasource" class=" org.jsp.MydataResource.MyDataSource">
+            <property name="url" value="http"></property>
+            <property name="username" value=" kishore"></property>
+            <property name="driverclassname" value=" mydata"/>
+            <property name="password" value="abc123"/>
+            </bean>
+
+</beans>
